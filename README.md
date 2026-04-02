@@ -13,7 +13,15 @@
 
 ### 2. 보안 네트워크 어플리케이션
 * **독립적 개발 환경**: `populate_sdk`를 통해 툴체인을 추출하여 타겟 보드에 최적화된 **SDK 크로스 컴파일 환경**을 구축했습니다.
-* **보안 통신 구현**: **OpenSSL(AES256-CBC, SHA256)** 라이브러리를 연동하여 데이터 암호화를 확인 후 TCPClientThread에 OpenSSL을 활용하여 소켓통신을 했습니다.
+* **소캣 통신 구현**:
+* ### TCP (Secure Communication)
+- pthread 기반 멀티스레드 서버 구현
+- OpenSSL AES-256-CBC 적용
+- 클라이언트-서버 암호화 통신 구현
+### UDP
+- sendto/recvfrom 기반 통신 구현
+- TCP와의 차이 이해 및 실습
+
 * **빌드 자동화**: **CMake**를 활용하여 복잡한 라이브러리 의존성(pthread, crypto)을 체계적으로 관리하고 빌드 프로세스를 자동화했습니다.
 
 ### 3. U-Boot 이해
