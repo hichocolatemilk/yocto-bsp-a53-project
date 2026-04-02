@@ -1,0 +1,26 @@
+From e0e51a0a46f9c791a6309a4fe8960597b480d446 Mon Sep 17 00:00:00 2001
+From: OpenEmbedded <oe.patch@oe>
+Date: Sun, 29 Mar 2026 16:10:37 +0900
+Subject: [PATCH] dts: change serial0 to uart0 set pins to alt5
+
+---
+ arch/arm/boot/dts/broadcom/bcm2710-rpi-3-b-plus.dts | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm/boot/dts/broadcom/bcm2710-rpi-3-b-plus.dts b/arch/arm/boot/dts/broadcom/bcm2710-rpi-3-b-plus.dts
+index 07d4a21f3f26..b1644cff1bff 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2710-rpi-3-b-plus.dts
++++ b/arch/arm/boot/dts/broadcom/bcm2710-rpi-3-b-plus.dts
+@@ -132,9 +132,9 @@ uart0_pins: uart0_pins {
+ 	};
+ 
+ 	uart1_pins: uart1_pins {
+-		brcm,pins;
+-		brcm,function;
+-		brcm,pull;
++		brcm,pins = <14 15>;
++		brcm,function = <2>;
++		brcm,pull = <0 2>;
+ 	};
+ 
+ 	uart1_bt_pins: uart1_bt_pins {
