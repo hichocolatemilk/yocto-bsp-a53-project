@@ -1,10 +1,10 @@
-# 🚀 Yocto Project: Raspberry Pi 3 Custom BSP & Secure Networking
+# 🚀 Yocto Project: Raspberry Pi 3B+ Custom BSP & Secure Networking
 
-본 프로젝트는 **Raspberry Pi 3 (Cortex-A53)** 환경에서 **Yocto Project (Scarthgap)**를 활용하여 커스텀 BSP를 구축하고, **OpenSSL** 기반의 보안 통신 어플리케이션을 통합 개발한 임베디드 리눅스 포트폴리오입니다.
+본 프로젝트는 **Raspberry Pi 3B+ (Cortex-A53)** 환경에서 **Yocto Project (Scarthgap)**를 활용하여 커스텀 BSP를 구축하고, **OpenSSL** 기반의 보안 통신 어플리케이션을 통합 개발한 임베디드 리눅스 포트폴리오입니다.
 
 ---
 
-## 🛠️ Key Achievements (핵심 성과)
+## 🛠️ 핵심 요약
 
 ### 1. 커널 최적화 및 BSP 설계
 * **커널 다이어트**: dmesg로 확인하여 불필요한 드라이버(BT, Sound 등)를 제거하여 커널 사이즈를 약 **3.2MB 감량**하고 부팅 속도를 9.7초 -> 7.5초 (2.2초)  개선했습니다.
@@ -20,7 +20,7 @@
 
 ---
 
-## 📂 Project Structure
+## 📂 프로젝트 구조
 
 * **`meta-custom-a53/`**: 커널 최적화 및 systemd 설정이 담긴 커스텀 요트 레이어
 * **`programs/`**: CMake 기반의 보안 TCP/UDP 소켓 통신 소스 코드
@@ -28,7 +28,7 @@
 
 ---
 
-## 💡 Troubleshooting Experience
+## 💡 이슈 경험
 ### 1
 * **Issue**:  sysInit 부팅 직후 `ifconfig` 시 IP가 잡히지 않는 현상 발생.
 * **Analysis**: 커널의 네트워크 설정 시점보다 이더넷 칩셋의 준비 완료 시점이 늦어 발생하는 타이밍 이슈 확인.
