@@ -1,3 +1,0 @@
-/home/hello/program/build/CMakeFiles/tcp_secure_client.dir
-/home/hello/program/build/CMakeFiles/edit_cache.dir
-/home/hello/program/build/CMakeFiles/rebuild_cache.dir
