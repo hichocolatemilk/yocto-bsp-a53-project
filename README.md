@@ -51,7 +51,7 @@
 ### 1. sysInit 네트워크 자동 연결 문제
 * **Issue**:  sysInit 부팅 직후 `ifconfig` 시 IP가 잡히지 않는 현상 발생.
 * **Analysis**: 커널의 네트워크 설정 시점보다 이더넷 칩셋의 준비 완료 시점이 늦어 발생하는 타이밍 이슈 확인.
-* **Solution**: `rc.local`을 통해 10초 지연 후 네트워크 서비스를 재시작하도록 설정하여 안정적인 IP 할당 확보 systemd로 교체시 증상 없음 .
+* **Solution**: `rc.local`을 통해 10초 지연 후 네트워크 서비스를 재시작하도록 설정하여 안정적인 IP 할당 확보 가능 하지만 systemd로 교체시 증상 없음 sleep 10초 안해도 되어 systemd로 결정.
 
 ### 2. devtool modify 적용 문제
 - **Issue**  
