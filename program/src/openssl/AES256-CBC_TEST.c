@@ -1,43 +1,43 @@
 #include "AES256-CBC.h"
 
-// int main()
-// {
+int main()
+{
 
-//     unsigned char key[32] = {
-//         0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
-//         0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f,
-//         0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17,
-//         0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f
-//     };
-//     unsigned char iv[16] = {
-//         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-//         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-//     };
+    unsigned char key[32] = {
+        0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
+        0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f,
+        0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17,
+        0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f
+    };
+    unsigned char iv[16] = {
+        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+    };
 
-//     unsigned char *plaintext = (unsigned char *)"Hello, World!";
-//     unsigned char ciphertext[128] = {0};
-//     unsigned char decryptedtext[128] = {0};
-//     int ciphertext_len = 0;
-//     int decryptedtext_len = 0;
+    unsigned char *plaintext = (unsigned char *)"Hello, World!";
+    unsigned char ciphertext[128] = {0};
+    unsigned char decryptedtext[128] = {0};
+    int ciphertext_len = 0;
+    int decryptedtext_len = 0;
 
-//     ciphertext_len = encrypt(plaintext, strlen((char *)plaintext), key, iv, ciphertext);
-//     if(ciphertext_len == -1)
-//     {
-//         printf("Encryption failed\n");
-//         return -1;
-//     }
-//     printf("Encrypted text: %s\n", ciphertext);
+    ciphertext_len = encrypt(plaintext, strlen((char *)plaintext), key, iv, ciphertext);
+    if(ciphertext_len == -1)
+    {
+        printf("Encryption failed\n");
+        return -1;
+    }
+    printf("Encrypted text: %s\n", ciphertext);
 
 
-//     decryptedtext_len = decrypt(ciphertext, ciphertext_len, key, iv, decryptedtext);
-//     if(decryptedtext_len == -1)
-//     {
-//         printf("Decryption failed\n");
-//         return -1;
-//     }
-//     printf("Decrypted text: %s\n", decryptedtext);
-//     return 0;
-// }
+    decryptedtext_len = decrypt(ciphertext, ciphertext_len, key, iv, decryptedtext);
+    if(decryptedtext_len == -1)
+    {
+        printf("Decryption failed\n");
+        return -1;
+    }
+    printf("Decrypted text: %s\n", decryptedtext);
+    return 0;
+}
 
 
 int encrypt(unsigned char *plaintext, int plaintext_len, unsigned char *key,

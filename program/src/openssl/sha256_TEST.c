@@ -1,19 +1,19 @@
 #include "sha256.h"
 
 
-// int main()
-// {
-//     unsigned char data[] = "Hello, World!";
-//     unsigned char hash[32];
-//     sha256(data, strlen((char *)data), hash);
-//     printf("SHA-256 hash: ");
-//     for(int i = 0; i < 32; i++)
-//     {
-//         printf("%02x", hash[i]);
-//     }
-//     printf("\n");   
-//     return 0;
-// }
+int main()
+{
+    unsigned char data[] = "Hello, World!";
+    unsigned char hash[32];
+    sha256(data, strlen((char *)data), hash);
+    printf("SHA-256 hash: ");
+    for(int i = 0; i < 32; i++)
+    {
+        printf("%02x", hash[i]);
+    }
+    printf("\n");   
+    return 0;
+}
 
 void sha256(const unsigned char *data, size_t data_len, unsigned char *hash)
 {
