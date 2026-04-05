@@ -4,7 +4,7 @@
 
 ---
 
-## 🛠️ 사용 기술 (Tech Stack)
+## 🛠️ 사용 기술
 * **하드웨어**: 라즈베리파이 3 모델 B+ (ARM Cortex-A53 아키텍처)
 * **OS 빌드**: Yocto 프로젝트, WSL2 (우분투 22.04 환경)
 * **커널**: 리눅스 커널 6.6.x (라즈베리파이 장기 지원 버전_Scarthgap)
@@ -41,7 +41,6 @@
 ---
 
 ## 📂 프로젝트 구조
-
 * **`meta-custom-a53/`**: 커널 최적화 및 systemd 설정이 담긴 커스텀 요트 레이어
 * **`programs/`**: CMake 기반의 보안 TCP/UDP 소켓 통신 소스 코드
 * **`doc/`**: WSL 구축부터 네트워크 명령어 실습까지의 기술 리포트 모음
@@ -49,11 +48,17 @@
 ---
 
 ## 💡 이슈 경험
-### 1
+### 1. sysInit 네트워크 자동 연결 문제
 * **Issue**:  sysInit 부팅 직후 `ifconfig` 시 IP가 잡히지 않는 현상 발생.
 * **Analysis**: 커널의 네트워크 설정 시점보다 이더넷 칩셋의 준비 완료 시점이 늦어 발생하는 타이밍 이슈 확인.
 * **Solution**: `rc.local`을 통해 10초 지연 후 네트워크 서비스를 재시작하도록 설정하여 안정적인 IP 할당 확보 systemd로 교체시 증상 없음 .
-### 2
-* **Issue**:  devtool modify로 적용 후 다시 modify할 시 바뀐 내용들이 적용이 안됨
-* **Analysis**: 
-* **Solution**: /meta-custom-a53/receipe-core/linux/linux-raspberrypi/ 의 patch들을 git am으로 하여 역으로 적용 시킴. 그러나 기존의 패치들이 없어짐 백업 후 진행 함.
+
+### 2. devtool modify 적용 문제
+- **Issue**  
+  devtool modify 후 수정 사항이 재적용되지 않는 문제 발생
+- **Analysis**  
+  기존 patch와 workspace 상태 불일치로 인해 변경 사항 반영 실패
+- **Solution**  
+  기존 patch를 git am 방식으로 재적용  
+  → 변경 사항 정상 반영  
+  → 기존 patch 백업 후 진행
