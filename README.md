@@ -17,7 +17,7 @@
 ### 1. 커널 최적화 및 BSP 설계
 * **커널 다이어트**: dmesg로 확인하여 불필요한 드라이버(BT, Sound 등)를 제거하여 커널 사이즈를 약 **3.2MB 감량**하고 부팅 속도를 dmesg 로그 기준으로 eth0 Link Up 시점을 비교한 결과,
 부팅 후 네트워크 링크 활성화 시간이 9.60초 → 7.51초로 줄어들어 약 2.09초 개선되었다.
-**Evidence**
+* **Evidence**
 - Before: `[    9.596739] lan78xx ... eth0: Link is Up`
 - After:  `[    7.508648] lan78xx ... eth0: Link is Up`
 
