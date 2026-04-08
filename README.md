@@ -42,7 +42,7 @@
 
 ## 📂 프로젝트 구조
 * **`meta-custom-a53/`**: 커널 최적화 및 systemd 설정이 담긴 커스텀 요트 레이어
-* **`programs/`**: CMake 기반의 보안 TCP/UDP 소켓 통신 소스 코드
+* **`program/`**: CMake 기반의 보안 TCP/UDP 소켓 통신 소스 코드
 * **`doc/`**: WSL 구축부터 네트워크 명령어 실습까지의 기술 리포트 모음
 
 ---
