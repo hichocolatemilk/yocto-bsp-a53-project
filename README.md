@@ -74,8 +74,8 @@ systemd로 전환한 이후에는 별도의 지연 없이도 네트워크가 정
   → 기존 patch 백업 후 진행
 
 ### 3. Driver 적용 문제
--**3.1**
--**Issue**
+- **3.1**
+- **Issue**
   드라이버 Yocto에 bb추가후 빌드 시 에러 발생
 - **Analysis**
   드라이버를 할때 기존 TEST할떄는 all,clean만 했었으나 modules_install이 없어서 문제가 됨
@@ -85,10 +85,10 @@ systemd로 전환한 이후에는 별도의 지연 없이도 네트워크가 정
 	$(MAKE) -C $(KERNEL_SRC) M=$(SRC) modules_install INSTALL_MOD_PATH=$(DESTDIR)
   추가
 
--**3.2**
--**Issue**
- char드라이버에 cat /dev/chartest시 커널 경고(Warnning) 발생
--**Analysis**
- kmalloc을 사용안하고 고정배열로 100을 했을때  *off은 커널이 어디까지 읽었다 알려주는 역할인데 이게없이 하여 한꺼번에 다읽어 buffer overflow가 발생
--**Solution**
- read 함수 호출 시 전달되는 offset 변수를 활용하여 현재 읽기 위치를 추적하고, 읽어온 바이트 수만큼 offset을 갱신하도록 로직 수정
+- **3.2**
+- **Issue**
+  char드라이버에 cat /dev/chartest시 커널 경고(Warnning) 발생
+- **Analysis**
+  kmalloc을 사용안하고 고정배열로 100을 했을때  *off은 커널이 어디까지 읽었다 알려주는 역할인데 이게없이 하여 한꺼번에 다읽어 buffer overflow가 발생
+- **Solution**
+  read 함수 호출 시 전달되는 offset 변수를 활용하여 현재 읽기 위치를 추적하고, 읽어온 바이트 수만큼 offset을 갱신하도록 로직 수정
