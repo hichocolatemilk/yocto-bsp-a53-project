@@ -13,4 +13,3 @@ S = "${WORKDIR}"
 inherit module
 
 KERNEL_MODULE_AUTOLOAD += "chartest hello"
-FILES:${PN} += "${nonarch_base_libdir}/modules/${KERNEL_VERSION}/**/*.ko*"
