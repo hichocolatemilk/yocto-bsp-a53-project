@@ -20,6 +20,7 @@
 - Before: `[    9.596739] lan78xx ... eth0: Link is Up`
 - After:  `[    7.508648] lan78xx ... eth0: Link is Up`
 
+
 * **시스템 매니저 전환**: 기존 SysVinit 환경에서는 서비스가 순차적으로 실행되면서 부팅 시간이 길어지는 문제가 있어, systemd로 전환하여 병렬 실행을 통해 부팅 속도와 관리 효율을 개선했습니다.
 * **네트워크 안정화**: SysVinit 환경에서는 부팅 직후 네트워크가 정상적으로 연결되지 않아 일정 시간 지연 후 동작하는 문제가 있었고, 이를 통해 초기화 타이밍 이슈로 판단했습니다.
 systemd로 전환한 이후에는 별도의 지연 없이도 네트워크가 정상적으로 동작하는 것을 확인했습니다.
@@ -42,6 +43,10 @@ systemd로 전환한 이후에는 별도의 지연 없이도 네트워크가 정
 - `printenv`를 통해 bootargs, bootcmd 등 주요 환경 변수 분석
 - Bootloader → Kernel → RootFS 부팅 흐름 이해
 - Raspberry Pi 기본 부팅 구조(config.txt)와의 차이 학습
+
+### 4. 드라이버 넣기
+- hello World 드라이버와 문자열 입력 드라이버를 추가
+- 드라이버 빌드 및 드라이버 동작 학습
 
 ---
 
@@ -67,3 +72,23 @@ systemd로 전환한 이후에는 별도의 지연 없이도 네트워크가 정
   기존 patch를 git am 방식으로 재적용  
   → 변경 사항 정상 반영  
   → 기존 patch 백업 후 진행
+
+### 3. Driver 적용 문제
+-**3.1**
+-**Issue**
+  드라이버 Yocto에 bb추가후 빌드 시 에러 발생
+- **Analysis**
+  드라이버를 할때 기존 TEST할떄는 all,clean만 했었으나 modules_install이 없어서 문제가 됨
+- **Solution**
+  Makefile에
+  modules_install:
+	$(MAKE) -C $(KERNEL_SRC) M=$(SRC) modules_install INSTALL_MOD_PATH=$(DESTDIR)
+  추가
+
+-**3.2**
+-**Issue**
+ char드라이버에 cat /dev/chartest시 커널 경고(Warnning) 발생
+-**Analysis**
+ kmalloc을 사용안하고 고정배열로 100을 했을때  *off은 커널이 어디까지 읽었다 알려주는 역할인데 이게없이 하여 한꺼번에 다읽어 buffer overflow가 발생
+-**Solution**
+ read 함수 호출 시 전달되는 offset 변수를 활용하여 현재 읽기 위치를 추적하고, 읽어온 바이트 수만큼 offset을 갱신하도록 로직 수정
