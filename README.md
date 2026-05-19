@@ -78,7 +78,7 @@ systemd로 전환한 이후에는 별도의 지연 없이도 네트워크가 정
 - **Issue**
   드라이버 Yocto에 bb추가후 빌드 시 에러 발생
 - **Analysis**
-  드라이버를 할때 기존 TEST할떄는 all,clean만 했었으나 modules_install이 없어서 문제가 됨
+  드라이버를 할때 기존 TEST할때는 all,clean만 했었으나 modules_install이 없어서 문제가 됨
 - **Solution**
   Makefile에
   modules_install:
