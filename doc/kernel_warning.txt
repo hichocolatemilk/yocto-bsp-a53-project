@@ -1,0 +1,127 @@
+insmod char.ko
+[16227.298598] Char Init!
+root@custom-a53-6:/# ls -l /proc/device
+device-tree/  devices
+root@custom-a53-6:/# ls -l /proc/devices
+bin/         etc/         lost+found/  root/        sys/
+boot/        hello.ko     media/       run/         tmp/
+char.ko      home/        mnt/         sbin/        usr/
+dev/         lib/         proc/        srv/         var/
+root@custom-a53-6:/# ls -l /proc/devices
+-r--r--r--    1 root     root             0 May 29 18:48 /proc/devices
+root@custom-a53-6:/# ls -l /proc/devices
+-r--r--r--    1 root     root             0 May 29 18:48 /proc/devices
+root@custom-a53-6:/# cd /proc/devices
+-sh: cd: can't cd to /proc/devices: Not a directory
+root@custom-a53-6:/# ls -l /proc/devices
+-r--r--r--    1 root     root             0 May 29 18:48 /proc/devices
+root@custom-a53-6:/# cat /proc/devices
+Character devices:
+  1 mem
+  4 /dev/vc/0
+  4 tty
+  4 ttyS
+  5 /dev/tty
+  5 /dev/console
+  5 /dev/ptmx
+  7 vcs
+ 10 misc
+ 13 input
+ 29 fb
+128 ptm
+136 pts
+180 usb
+189 usb_device
+204 ttyAMA
+226 drm
+238 chartest
+239 gpiomem
+240 uio
+241 binder
+242 hidraw
+243 rpmb
+244 nvme-generic
+245 nvme
+246 vc-mem
+247 bsg
+248 watchdog
+249 ptp
+250 pps
+251 lirc
+252 rtc
+253 dma_heap
+254 gpiochip
+
+Block devices:
+  1 ramdisk
+  7 loop
+  8 sd
+ 65 sd
+ 66 sd
+ 67 sd
+ 68 sd
+ 69 sd
+ 70 sd
+ 71 sd
+128 sd
+129 sd
+130 sd
+131 sd
+132 sd
+133 sd
+134 sd
+135 sd
+179 mmc
+259 blkext
+root@custom-a53-6:/# mkmod /dev/chartest c 238 0
+-sh: mkmod: not found
+root@custom-a53-6:/# mknod /dev/chartest c 238 0
+root@custom-a53-6:/# ls
+bin         etc         lost+found  root        sys
+boot        hello.ko    media       run         tmp
+char.ko     home        mnt         sbin        usr
+dev         lib         proc        srv         var
+root@custom-a53-6:/# ls -l /dev/c
+cachefiles       chartest         cpu_dma_latency
+char/            console          cuse
+root@custom-a53-6:/# echo "test" > /dev/chartest
+[16576.392544] Char_open
+[16576.394994] test
+[16576.396876] Char_close
+root@custom-a53-6:/# cat /dev/chartest
+[16589.523971] Char_open
+[16589.526327] ------------[ cut here ]------------
+[16589.531060] Buffer overflow detected (100 < 4096)!
+[16589.535976] WARNING: CPU: 0 PID: 565 at /mm/maccess.c:228 __copy_overflow+0x20/0x30
+[16589.543759] Modules linked in: char(O) brcmfmac_wcc brcmfmac brcmutil cfg80211 raspberrypi_hwmon raspberrypi_gpiomem uio_pdrv_genirq uio sch_fq_codel fuse nfnetlink ipv6 [last unloaded: hello(O)]
+[16589.561431] CPU: 0 PID: 565 Comm: cat Tainted: G           O       6.6.63-v8-dv1 #1
+[16589.569192] Hardware name: Raspberry Pi 3 Model B Plus Rev 1.3 (DT)
+[16589.575541] pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+[16589.582596] pc : __copy_overflow+0x20/0x30
+[16589.586746] lr : __copy_overflow+0x20/0x30
+[16589.590895] sp : ffffffc080bf3c80
+[16589.594247] x29: ffffffc080bf3c80 x28: ffffff80025eab80 x27: 0000000000000000
+[16589.601483] x26: 0000000000000000 x25: 0000000000000000 x24: 0000000000000000
+[16589.608719] x23: 0000000000000001 x22: ffffffc080bf3dc0 x21: 0000007fedc49488
+[16589.615954] x20: ffffff8001d43300 x19: 0000000000001000 x18: 0000000000000006
+[16589.623190] x17: 0000000000000000 x16: ffffffdf0e5bcdf0 x15: ffffffc080bf36a0
+[16589.630425] x14: 0000000000000000 x13: ffffffdf0f3ffda8 x12: 0000000000000456
+[16589.637662] x11: 0000000000000172 x10: ffffffdf0f457da8 x9 : ffffffdf0f3ffda8
+[16589.644897] x8 : 00000000ffffefff x7 : ffffffdf0f457da8 x6 : 80000000fffff000
+[16589.652134] x5 : 0000000000000000 x4 : 0000000000000000 x3 : 0000000000000000
+[16589.659369] x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffffff80025eab80
+[16589.666605] Call trace:
+[16589.669077]  __copy_overflow+0x20/0x30
+[16589.672874]  Char_read+0xcc/0xd8 [char]
+[16589.676766]  vfs_read+0xc4/0x2bc
+[16589.680037]  ksys_read+0x74/0x10c
+[16589.683394]  __arm64_sys_read+0x1c/0x28
+[16589.687278]  invoke_syscall+0x48/0x114
+[16589.691077]  el0_svc_common.constprop.0+0xc0/0xe0
+[16589.695844]  do_el0_svc+0x1c/0x28
+[16589.699200]  el0_svc+0x38/0xc8
+[16589.702292]  el0t_64_sync_handler+0x120/0x12c
+[16589.706706]  el0t_64_sync+0x190/0x194
+[16589.710415] ---[ end trace 0000000000000000 ]---
+cat: rea[16589.715327] Char_close
+d error: Bad address
