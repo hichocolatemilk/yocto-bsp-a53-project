@@ -1,6 +1,6 @@
 # 🚀 Yocto Project: Raspberry Pi 3B+ Custom BSP & Secure Networking
 
-본 프로젝트는 **Raspberry Pi 3B+ (Cortex-A53)** 환경에서 **Yocto Project (Scarthgap)** 를 활용하여 커스텀 BSP를 구축하고, **OpenSSL** 기반의 보안 통신 어플리케이션을 통합 개발한 임베디드 리눅스 포트폴리오입니다.
+Raspberry Pi 3B+ 환경에서 Yocto Project(Scarthgap)를 활용하여 Embedded Linux 빌드 환경을 구축하고, Device Tree 수정, Character Device Driver 통합, RootFS 커스터마이징을 수행한 BSP 학습 프로젝트입니다. 또한 OpenSSL 기반 TCP/UDP 통신 예제를 개발하여 Embedded Linux 환경에서의 빌드, 배포 및 응용프로그램 개발 과정을 학습하였습니다.
 
 ---
 
