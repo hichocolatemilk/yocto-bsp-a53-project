@@ -10,7 +10,6 @@ unsigned char iv[16] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 
 void *client_send(void *args){
     int client_sockfd = *(int *)args;
-    free(args);
     unsigned int ciphertext_len = 0;
     unsigned int decryptedtext_len = 0;
     int buffer_len;
@@ -40,7 +39,7 @@ void *client_send(void *args){
 
 int main(){
     pthread_t client_thread_id;
-    int sockfd;
+    int sockfd, client_sockfd;
     char message[BUFFER_SIZE];
     struct sockaddr_in server_addr, client_addr;
     socklen_t server_addr_len = sizeof(server_addr);
@@ -53,9 +52,8 @@ int main(){
     bind(sockfd, (struct sockaddr *)&server_addr, server_addr_len);
     listen(sockfd, 3);
     while(1){
-        int *pclient = malloc(sizeof(int));
-        *pclient = accept(sockfd, (struct sockaddr *)&client_addr, &client_addr_len);
-        pthread_create(&client_thread_id, NULL, client_send, (void *)pclient);
+        client_sockfd = accept(sockfd, (struct sockaddr *)&client_addr, &client_addr_len);
+        pthread_create(&client_thread_id, NULL, client_send, &client_sockfd);
         pthread_detach(client_thread_id);
     }
     close(sockfd);
