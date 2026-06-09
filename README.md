@@ -1,15 +1,15 @@
 # 🚀 Yocto Project: Raspberry Pi 3B+ Custom BSP & Secure Networking
 
-Raspberry Pi 3B+ 환경에서 Yocto Project(Scarthgap)를 활용하여 Embedded Linux 빌드 환경을 구축하고, Device Tree 수정, Character Device Driver 통합, RootFS 커스터마이징을 수행한 BSP 학습 프로젝트입니다. 또한 OpenSSL 기반 TCP/UDP 통신 예제를 개발하여 Embedded Linux 환경에서의 빌드, 배포 및 응용프로그램 개발 과정을 학습하였습니다.
-
+1. Raspberry Pi 3B+ 환경에서 Yocto Project(Scarthgap)를 활용하여 Embedded Linux 빌드 환경을 구축하고, Device Tree 수정, Character Device Driver 통합, RootFS 커스터마이징을 수행한 BSP 학습 프로젝트입니다. 또한 OpenSSL 기반 TCP/UDP 통신 예제를 개발하여 Embedded Linux 환경에서의 빌드, 응용프로그램 개발 과정을 학습. 
+2. 간단한 udp로 보드에서 qt로 CPU 사용률, Memory 사용률, 가동 시간을 받는 프로그램 학습.
 ---
 
 ## 🛠️ 사용 기술
 * **하드웨어**: 라즈베리파이 3 모델 B+ (ARM Cortex-A53 아키텍처)
 * **OS 빌드**: Yocto 프로젝트, WSL2 (우분투 22.04 환경)
 * **커널**: 리눅스 커널 6.6.x (라즈베리파이 장기 지원 버전_Scarthgap)
-* **사용 언어**: C, 셸 스크립트 (Shell Script)
-* **개발 도구**: CMake, OpenSSL, Git
+* **사용 언어**: C, C++
+* **개발 도구**: CMake, OpenSSL, Git, Qt Creator
 
 ---
 
@@ -44,10 +44,15 @@ systemd로 전환한 이후에는 별도의 지연 없이도 네트워크가 정
 - Bootloader → Kernel → RootFS 부팅 흐름 이해
 - Raspberry Pi 기본 부팅 구조(config.txt)와의 차이 학습
 
-### 4. 드라이버 넣기
-- hello World 드라이버와 문자열 입력 드라이버를 추가
+[2026.05]
+### 4. 캐릭터 드라이버 넣기
+- hello World 드라이버와 문자열 입력, 출력 드라이버를 추가
 - 드라이버 빌드 및 드라이버 동작 학습
 
+[2026.06]
+### 5. Qt Creator를 이용한 상태 프로그램 
+- udp로 CPU, Memory, 가동시간을 받는 프로그램 추가 (1.0)
+- 추가적으로 scp로 프로그램을 넣는다던가, 그래프등 추가 예정
 ---
 
 ## 📂 프로젝트 구조
