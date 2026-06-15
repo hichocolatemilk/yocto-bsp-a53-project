@@ -55,10 +55,16 @@ systemd로 전환한 이후에는 별도의 지연 없이도 네트워크가 정
 ---
 
 ## 📂 프로젝트 구조
-* **`meta-custom-a53/`**: 커널 최적화 및 systemd 설정이 담긴 커스텀 요트 레이어
-* **`program/`**: CMake 기반의 보안 TCP/UDP 소켓 통신 소스 코드
-* **`doc/`**: WSL 구축부터 네트워크 명령어 실습까지의 기술 리포트 모음
 
+```text
+├── doc/                        # 개발 설계 문서 및 시스템 분석 로그
+├── meta-custom-a53/            # Cortex-A53 타겟 보드 구동을 위한 Yocto Custom BSP 레이어
+└── program/                    # 임베디드 시스템 소프트웨어 영역
+	├── udpstatus/              # [타겟 보드] C기반 가벼운 UDP 상태 브로드캐스팅 시스템 데몬
+    ├── socket/              	# [타겟 보드] C기반 간단한 소캣프로그래밍
+	|	└──  tcpThreadClient    # [타겟 보드] C기반 OpenSSL을 이용한 간단한 소캣 프로그래밍
+    └── qt-gui-app/             # [Host PC] 타겟 보드 연동용 Qt6/C++ 기반 실시간 GUI 제어 콘솔
+```
 ---
 
 ## 💡 이슈 경험
