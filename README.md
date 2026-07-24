@@ -44,14 +44,13 @@ systemd로 전환한 이후에는 별도의 지연 없이도 네트워크가 정
 - Bootloader → Kernel → RootFS 부팅 흐름 이해
 - Raspberry Pi 기본 부팅 구조(config.txt)와의 차이 학습
 
-[2026.05]
 ### 4. 캐릭터 드라이버 넣기
-- hello World 드라이버와 문자열 입력, 출력 드라이버를 추가
+- hello World 드라이버와 char_driver 입력, 출력 드라이버를 추가
+- 간단하게 dts에 가상의 트리를 추가하여 probe,remove 방식 추가(platform_driver)
 - 드라이버 빌드 및 드라이버 동작 학습
 
-[2026.06]
 ### 5. Qt Creator를 이용한 상태 프로그램 
-- udp로 CPU, Memory, 가동시간을 받는 프로그램 추가 (1.0)
+- udp로 CPU, Memory, 가동시간을 받는 프로그램 추가
 ---
 
 ## 📂 프로젝트 구조
@@ -82,6 +81,7 @@ systemd로 전환한 이후에는 별도의 지연 없이도 네트워크가 정
   기존 patch를 git am 방식으로 재적용  
   → 변경 사항 정상 반영  
   → 기존 patch 백업 후 진행
+  → 그 후 finish를 안하고 git add 및 commit 후 diff로 패치파일을 생성하여 적용 방법으로 함.
 
 ### 3. Driver 적용 문제
 - **3.1**
