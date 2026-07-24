@@ -1,7 +1,7 @@
 # 🚀 Yocto Project: Raspberry Pi 3B+ Custom BSP & Secure Networking
 
 1. Raspberry Pi 3B+ 환경에서 Yocto Project(Scarthgap)를 활용하여 Embedded Linux 빌드 환경을 구축하고, Device Tree 수정, Character Device Driver 통합, RootFS 커스터마이징을 수행한 BSP 학습 프로젝트입니다. 또한 OpenSSL 기반 TCP/UDP 통신 예제를 개발하여 Embedded Linux 환경에서의 빌드, 응용프로그램 개발 과정을 학습. 
-2. 간단한 udp로 보드에서 qt로 CPU 사용률, Memory 사용률, 가동 시간을 받는 프로그램 학습.
+2. 간단한 udp로 보드에서 PC로 CPU 사용률, Memory 사용률, 가동 시간 보내면 qt로 데이터를 받는 프로그램 학습.
 ---
 
 ## 🛠️ 사용 기술
