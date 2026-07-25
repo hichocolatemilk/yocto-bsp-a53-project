@@ -1,15 +1,15 @@
 # 🚀 Yocto Project: Raspberry Pi 3B+ Custom BSP & Secure Networking
 
-Raspberry Pi 3B+ 환경에서 Yocto Project(Scarthgap)를 활용하여 Embedded Linux 빌드 환경을 구축하고, Device Tree 수정, Character Device Driver 통합, RootFS 커스터마이징을 수행한 BSP 학습 프로젝트입니다. 또한 OpenSSL 기반 TCP/UDP 통신 예제를 개발하여 Embedded Linux 환경에서의 빌드, 배포 및 응용프로그램 개발 과정을 학습하였습니다.
-
+1. Raspberry Pi 3B+ 환경에서 Yocto Project(Scarthgap)를 활용하여 Embedded Linux 빌드 환경을 구축하고, Device Tree 수정, Character Device Driver 통합, RootFS 커스터마이징을 수행한 BSP 학습 프로젝트입니다. 또한 OpenSSL 기반 TCP/UDP 통신 예제를 개발하여 Embedded Linux 환경에서의 빌드, 응용프로그램 개발 과정을 학습. 
+2. 간단한 udp로 보드에서 PC로 CPU 사용률, Memory 사용률, 가동 시간 보내면 qt로 데이터를 받는 프로그램 학습.
 ---
 
 ## 🛠️ 사용 기술
 * **하드웨어**: 라즈베리파이 3 모델 B+ (ARM Cortex-A53 아키텍처)
 * **OS 빌드**: Yocto 프로젝트, WSL2 (우분투 22.04 환경)
 * **커널**: 리눅스 커널 6.6.x (라즈베리파이 장기 지원 버전_Scarthgap)
-* **사용 언어**: C, 셸 스크립트 (Shell Script)
-* **개발 도구**: CMake, OpenSSL, Git
+* **사용 언어**: C, C++
+* **개발 도구**: CMake, OpenSSL, Git, Qt Creator
 
 ---
 
@@ -44,17 +44,26 @@ systemd로 전환한 이후에는 별도의 지연 없이도 네트워크가 정
 - Bootloader → Kernel → RootFS 부팅 흐름 이해
 - Raspberry Pi 기본 부팅 구조(config.txt)와의 차이 학습
 
-### 4. 드라이버 넣기
-- hello World 드라이버와 문자열 입력 드라이버를 추가
+### 4. 캐릭터 드라이버 넣기
+- hello World 드라이버와 char_driver 입력, 출력 드라이버를 추가
+- 간단하게 dts에 가상의 트리를 추가하여 probe,remove 방식 추가(platform_driver)
 - 드라이버 빌드 및 드라이버 동작 학습
 
+### 5. Qt Creator를 이용한 상태 프로그램 
+- udp로 CPU, Memory, 가동시간을 받는 프로그램 추가
 ---
 
 ## 📂 프로젝트 구조
-* **`meta-custom-a53/`**: 커널 최적화 및 systemd 설정이 담긴 커스텀 요트 레이어
-* **`program/`**: CMake 기반의 보안 TCP/UDP 소켓 통신 소스 코드
-* **`doc/`**: WSL 구축부터 네트워크 명령어 실습까지의 기술 리포트 모음
 
+```text
+├── doc/                        # 개발 설계 문서 및 시스템 분석 로그
+├── meta-custom-a53/            # Cortex-A53 타겟 보드 구동을 위한 Yocto Custom BSP 레이어
+└── program/                    # 임베디드 시스템 소프트웨어 영역
+	├── udpstatus/              # [타겟 보드] C기반 가벼운 UDP 상태 브로드캐스팅 시스템 데몬
+    ├── socket/              	# [타겟 보드] C기반 간단한 소캣프로그래밍
+	|	└──  tcpThreadClient    # [타겟 보드] C기반 OpenSSL을 이용한 간단한 소캣 프로그래밍
+    └── qt-gui-app/             # [Host PC] 타겟 보드 연동용 Qt6/C++ 기반 실시간 GUI 제어 콘솔
+```
 ---
 
 ## 💡 이슈 경험
@@ -72,6 +81,7 @@ systemd로 전환한 이후에는 별도의 지연 없이도 네트워크가 정
   기존 patch를 git am 방식으로 재적용  
   → 변경 사항 정상 반영  
   → 기존 patch 백업 후 진행
+  → 그 후 finish를 안하고 git add 및 commit 후 diff로 패치파일을 생성하여 적용 방법으로 함.
 
 ### 3. Driver 적용 문제
 - **3.1**
