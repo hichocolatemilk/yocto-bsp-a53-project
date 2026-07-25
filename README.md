@@ -92,7 +92,7 @@ systemd로 전환한 이후에는 별도의 지연 없이도 네트워크가 정
 - **Solution**
   Makefile에
   modules_install:
-	$(MAKE) -C $(KERNEL_SRC) M=$(SRC) modules_install INSTALL_MOD_PATH=$(DESTDIR)
+	$(MAKE) -C $(KERNEL_SRC) M=$(SRC) modules_install
   추가
 
 - **3.2**
