@@ -1,0 +1,55 @@
+diff --git a/arch/arm/boot/dts/broadcom/bcm2710-rpi-3-b-plus.dts b/arch/arm/boot/dts/broadcom/bcm2710-rpi-3-b-plus.dts
+index 8973985e9902..d28ad6fe2d37 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2710-rpi-3-b-plus.dts
++++ b/arch/arm/boot/dts/broadcom/bcm2710-rpi-3-b-plus.dts
+@@ -17,6 +17,11 @@ aliases {
+ 		serial1 = &uart0;
+ 		mmc1 = &mmcnr;
+ 	};
++	
++	my_char {
++		compatible = "my_chartest";
++		status = "okay";
++	};
+ };
+ 
+ &gpio {
+@@ -122,6 +127,7 @@ bt_pins: bt_pins {
+ 		brcm,pins = <43>;
+ 		brcm,function = <4>; /* alt0:GPCLK2 */
+ 		brcm,pull = <0>;
++		status = "disabled";
+ 	};
+ 
+ 	uart0_pins: uart0_pins {
+@@ -131,9 +137,9 @@ uart0_pins: uart0_pins {
+ 	};
+ 
+ 	uart1_pins: uart1_pins {
+-		brcm,pins;
+-		brcm,function;
+-		brcm,pull;
++		brcm,pins = <14 15>;
++		brcm,function = <2>;
++		brcm,pull = <0 2>;
+ 	};
+ 
+ 	uart1_bt_pins: uart1_bt_pins {
+@@ -182,7 +188,7 @@ expgpio: expgpio {
+ 
+ &uart0 {
+ 	pinctrl-names = "default";
+-	pinctrl-0 = <&uart0_pins &bt_pins>;
++	pinctrl-0 = <&uart0_pins>;
+ 	status = "okay";
+ };
+ 
+@@ -236,7 +242,7 @@ &i2s {
+ &led_act {
+ 	gpios = <&gpio 29 GPIO_ACTIVE_HIGH>;
+ 	default-state = "off";
+-	linux,default-trigger = "mmc0";
++	linux,default-trigger = "heartbeat";
+ };
+ 
+ &leds {

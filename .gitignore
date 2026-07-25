@@ -5,5 +5,6 @@
 # CMake generated files
 CMakeCache.txt
 CMakeFiles/
-#Makefile
+Makefile
+.gitignore
 cmake_install.cmake
